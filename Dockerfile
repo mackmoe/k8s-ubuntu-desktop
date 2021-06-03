@@ -21,8 +21,8 @@ RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
 RUN /usr/bin/python2 get-pip.py
 
 # Create my user
-RUN useradd -ms /bin/bash monash
-RUN adduser monash sudo
+RUN useradd -ms /bin/bash mate
+RUN adduser mate sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 # Install Chrome

@@ -34,6 +34,12 @@ http://HOSTIP:PORT/vnc.html
 
 ## Run as a docker on localhost
 ```console
-  $ docker run -p 6080:80 --name ubuntu-desktop -v $HOME:/home/mate/mount jmcdice/k8s-ubuntu-desktop:latest
+  $ docker run -p 6080:80 --name ubuntu-desktop -v $HOME:/home/monash/mount mackmoe/k8s-ubuntu-desktop:latest
   # Browse to: http://localhost:6080/vnc.html
+```
+
+## RUN the convert cmd
+```console
+  $ cd /home/monash/Git/kubernetes/cmd/kubectl-convert
+  $ go run kubectl-convert.go -f ../../../k8s-ubuntu-desktop/yml/ubuntu-desktop-deployment.yml | kubectl create -f -
 ```

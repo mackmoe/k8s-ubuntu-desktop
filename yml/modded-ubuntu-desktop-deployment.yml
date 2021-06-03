@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ubuntu-desktop
+  name: ubuntu-desktop
+  namespace: default
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  revisionHistoryLimit: 2147483647
+  selector:
+    matchLabels:
+      run: ubuntu-desktop
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: ubuntu-desktop
+    spec:
+      containers:
+      - env:
+        - name: VNC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: vnc-password
+        image: mackmoe/k8s-ubuntu-desktop:latest
+        imagePullPolicy: Always
+        name: ubuntu-desktop
+        ports:
+        - containerPort: 6080
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status: {}

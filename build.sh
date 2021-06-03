@@ -19,7 +19,7 @@ function docker_build() {
 
 function create_deployment() {
   # Deploy to k8s
-  kubectl create secret generic -n default vnc-password --from-literal=password='top-secret-passwd'
+  kubectl create secret generic -n default vnc-password --from-literal=password='my_password'
   kubectl create -f yml/ubuntu-desktop-deployment.yml
   kubectl create -f yml/ubuntu-desktop-service.yml
 }
